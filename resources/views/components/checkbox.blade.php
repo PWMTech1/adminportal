@@ -1,0 +1,1 @@
+<input type="checkbox" id="{{$attributes->get('id')}}" class="{{$attributes->get('class')}}" value="{{$attributes->get('value')}}">

@@ -1,0 +1,39 @@
+service: approd
+runtime: php
+env: flex
+
+runtime_config: 
+    document_root: public
+
+# Ensure we skip ".env", which is only for local development
+skip_files: 
+    - .env
+
+automatic_scaling:
+    min_num_instances: 1
+    max_num_instances: 1
+
+resources:
+    cpu: 2
+    memory_gb: 4
+    disk_size_gb: 100
+
+env_variables:
+    # Put production environment variables here.
+    APP_DEBUG: true
+    APP_ENV: production
+    APP_KEY: base64:K3ff9GnzOEVXUU+kYPJPH7U9SlQz1mcafinBuVIUwko=
+    APP_NAME: "Admin Portal for Innovative"
+    DB_CONNECTION: mysql
+    DB_DATABASE: EMR
+    DB_USERNAME: root
+    DB_PASSWORD: Woundcare2020!
+    DB_SOCKET: "/cloudsql/phrasal-insight-297519:us-east1:mysql"
+
+beta_settings:
+    cloud_sql_instances: "phrasal-insight-297519:us-east1:mysql"
+
+handlers:
+  - url: /.*
+    script: None
+    secure: always

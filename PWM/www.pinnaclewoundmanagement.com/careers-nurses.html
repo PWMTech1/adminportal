@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle Wound Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/styles-spacings.css">
+
+</head>
+<body>
+    <div id="mobile-nav">
+        <div id="mobile-nav-container">
+            <button id="close-menu" onclick="closeNav()">
+                <span class="material-icons"> close </span>
+            </button>
+            
+            <ul>
+                <li><a  onclick="closeNav()" href="index.html">HOME</a></li>
+                <li><a  onclick="closeNav()" href="index.html#mission">OUR MISSION</a></li>
+                <li><a  onclick="closeNav()" href="index.html#vision">OUR VISION</a></li>
+                <li><a  onclick="closeNav()" href="index.html#about">ABOUT US</a></li>
+                <li><a  onclick="closeNav()" href="services.html">OUR SERVICES</a></li>
+                <li><a  onclick="closeNav()" href="services.html#whyus">WHY US</a></li>
+                <li><a  onclick="closeNav()" href="careers-physicians.html">Physician Careers</a></li>
+                <li><a  onclick="closeNav()" href="careers-nurses.html">Nurse Careers</a></li>
+                <li><a  onclick="closeNav()" href="contact.html">CONTACT US</a></li>
+                <li><a   onclick="closeNav()" href="">LOGIN FACILITY PORTAL</a</li>
+            </ul>
+        </div>
+    </div>
+    <header id="nav">
+        <div class="container-wider header-container">
+            <a class="btn-facility" href="">LOGIN FACILITY PORTAL</a>
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html"><img src="./images/pinnacle-logo-color.png" alt="Pinnacle Wound Management Logo"></a>
+                </div>
+                <button class="open-nav" onclick="openNav()"><span class="material-icons"> menu </button>
+                <ul class="nav-desktop">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#mission">OUR MISSION</a></li>
+                    <li><a href="index.html#vision">OUR VISION</a></li>
+                    <li><a href="index.html#about">ABOUT US</a></li>
+                    <li><a href="services.html">OUR SERVICES</a></li>
+                    <li><a href="services.html#whyus">WHY US</a></li>
+                    <li id="nav-careers">
+                        <a class="active" href="careers-physicians.html">CAREERS</a>
+                        <div class="careers-submenu">
+                            <ul>
+                                <li><a href="careers-physicians.html">Physician Careers</a></li>
+                                <li><a href="careers-nurses.html">Nurse Careers</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </header>
+    <main>
+        <div class="hero-careers-nurses">
+            <div class="container">
+                <div class="hero-container">
+                    <h1>
+                        Nurse Career
+                    </h1>
+                    <p class="mb-0"> <strong>Are you looking for a new opportunity in the medical field?</strong> </p>
+                    <p class="mt-0">
+                        Pinnacle Wound Management is dedicated to providing excellent wound care to our patients. We are looking for individuals who share our commitment to quality and patient satisfaction. If you are hardworking, motivated, and want to be part of a team that values your input, we want to hear from you! 
+                    </p>
+                    <a href="#jobs" class="btn-lg btn-cta mt-10">VIEW OPEN POSITIONS</a>
+                </div>
+            </div>
+        </div>
+        <div class="section-white">
+            <div class="container-narrower careers-intro">
+                <h2 class="h2-red">Join Our Team</h2>
+                <p class="copy">
+                    You will be able to focus on patient care without the stress of managing your own business or staff. With NO CALL responsibilities, we offer you the FREEDOM to work when it’s convenient for you while still earning dependable revenue that can be added to your current practice. If this sounds like something that would interest you, please contact us today! We look forward to hearing from you soon!
+                </p>
+            </div>
+            <div id="jobs" style="scroll-margin-top: 100px;" class="container-wider">
+                <div class="careers-search-container">
+                   <form action="">
+                       <div class="career-search-row">
+                           <div class="form-group mb-0">
+                               <label for="state">State</label>
+                               <select name="state" id="">
+                                <option value=''></option>
+                                <option value='AL'>AL</option>
+                                <option value='AK'>AK</option>
+                                <option value='AS'>AS</option>
+                                <option value='AZ'>AZ</option>
+                                <option value='AR'>AR</option>
+                                <option value='CA'>CA</option>
+                                <option value='CO'>CO</option>
+                                <option value='CT'>CT</option>
+                                <option value='DE'>DE</option>
+                                <option value='DC'>DC</option>
+                                <option value='FL'>FL</option>
+                                <option value='GA'>GA</option>
+                                <option value='GU'>GU</option>
+                                <option value='HI'>HI</option>
+                                <option value='ID'>ID</option>
+                                <option value='IL'>IL</option>
+                                <option value='IN'>IN</option>
+                                <option value='IA'>IA</option>
+                                <option value='KS'>KS</option>
+                                <option value='KY'>KY</option>
+                                <option value='LA'>LA</option>
+                                <option value='ME'>ME</option>
+                                <option value='MD'>MD</option>
+                                <option value='MA'>MA</option>
+                                <option value='MI'>MI</option>
+                                <option value='MN'>MN</option>
+                                <option value='MS'>MS</option>
+                                <option value='MO'>MO</option>
+                                <option value='MT'>MT</option>
+                                <option value='NE'>NE</option>
+                                <option value='NV'>NV</option>
+                                <option value='NH'>NH</option>
+                                <option value='NJ'>NJ</option>
+                                <option value='NM'>NM</option>
+                                <option value='NY'>NY</option>
+                                <option value='NC'>NC</option>
+                                <option value='ND'>ND</option>
+                                <option value='MP'>MP</option>
+                                <option value='OH'>OH</option>
+                                <option value='OK'>OK</option>
+                                <option value='OR'>OR</option>
+                                <option value='PA'>PA</option>
+                                <option value='PR'>PR</option>
+                                <option value='RI'>RI</option>
+                                <option value='SC'>SC</option>
+                                <option value='SD'>SD</option>
+                                <option value='TN'>TN</option>
+                                <option value='TX'>TX</option>
+                                <option value='UT'>UT</option>
+                                <option value='VT'>VT</option>
+                                <option value='VA'>VA</option>
+                                <option value='VI'>VI</option>
+                                <option value='WA'>WA</option>
+                                <option value='WV'>WV</option>
+                                <option value='WI'>WI</option>
+                                <option value='WY'>WY</option>
+                            </select>
+                           </div>
+                           <div class="form-group mb-0">
+                               <label for="city">City</label>
+                               <select name="city" id="">
+                                <option value=''></option>
+                                <option value='AL'>AL</option>
+                                <option value='AK'>AK</option>
+                                <option value='AS'>AS</option>
+                                <option value='AZ'>AZ</option>
+                                <option value='AR'>AR</option>
+                                <option value='CA'>CA</option>
+                                <option value='CO'>CO</option>
+                                <option value='CT'>CT</option>
+                                <option value='DE'>DE</option>
+                                <option value='DC'>DC</option>
+                                <option value='FL'>FL</option>
+                                <option value='GA'>GA</option>
+                                <option value='GU'>GU</option>
+                                <option value='HI'>HI</option>
+                                <option value='ID'>ID</option>
+                                <option value='IL'>IL</option>
+                                <option value='IN'>IN</option>
+                                <option value='IA'>IA</option>
+                                <option value='KS'>KS</option>
+                                <option value='KY'>KY</option>
+                                <option value='LA'>LA</option>
+                                <option value='ME'>ME</option>
+                                <option value='MD'>MD</option>
+                                <option value='MA'>MA</option>
+                                <option value='MI'>MI</option>
+                                <option value='MN'>MN</option>
+                                <option value='MS'>MS</option>
+                                <option value='MO'>MO</option>
+                                <option value='MT'>MT</option>
+                                <option value='NE'>NE</option>
+                                <option value='NV'>NV</option>
+                                <option value='NH'>NH</option>
+                                <option value='NJ'>NJ</option>
+                                <option value='NM'>NM</option>
+                                <option value='NY'>NY</option>
+                                <option value='NC'>NC</option>
+                                <option value='ND'>ND</option>
+                                <option value='MP'>MP</option>
+                                <option value='OH'>OH</option>
+                                <option value='OK'>OK</option>
+                                <option value='OR'>OR</option>
+                                <option value='PA'>PA</option>
+                                <option value='PR'>PR</option>
+                                <option value='RI'>RI</option>
+                                <option value='SC'>SC</option>
+                                <option value='SD'>SD</option>
+                                <option value='TN'>TN</option>
+                                <option value='TX'>TX</option>
+                                <option value='UT'>UT</option>
+                                <option value='VT'>VT</option>
+                                <option value='VA'>VA</option>
+                                <option value='VI'>VI</option>
+                                <option value='WA'>WA</option>
+                                <option value='WV'>WV</option>
+                                <option value='WI'>WI</option>
+                                <option value='WY'>WY</option>
+                            </select>
+                           </div>
+                           <div class="form-group mb-0">
+                               <label for="position">Position</label>
+                               <select name="position" id="">
+                                <option value=''></option>
+                                <option value=''>Wound Care Physician</option>
+                                <option value=''>General Surgeon</option>
+                                <option value=''>Nurse Practitioner</option>
+                            </select>
+                           </div>
+                           <button class="btn-md btn-blue pt-10 pb-10">SEARCH</button>
+                       </div>
+
+                   </form>
+                    
+                </div>
+                <div class="table-wraper">
+                    <table class="careers-table">
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>License Type</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> Kentucky </td>
+                                <td> Lexington </td>
+                                <td>
+                                    General Surgeon<br>
+                                    <span>January 12, 2022</span>
+                                </td>
+                                <td> <button class="btn-sm btn-outline-blue">APPLY</button> </td>
+                            </tr>
+                            <tr>
+                                <td> Georgia </td>
+                                <td> Atlanta </td>
+                                <td>
+                                    Wound Care Physician<br>
+                                    <span>January 18, 2022</span>
+                                </td>
+                                <td> <button class="btn-sm btn-outline-blue">APPLY</button> </td>
+                            </tr>
+                            <tr>
+                                <td> Georgia </td>
+                                <td> Savannah </td>
+                                <td>
+                                    Nurse Practitioner<br>
+                                    <span>March 12, 2022</span>
+                                </td>
+                                <td> <button class="btn-sm btn-outline-blue">APPLY</button> </td>
+                            </tr>
+                            <tr>
+                                <td> Tennessee </td>
+                                <td> Nashville </td>
+                                <td>
+                                    Wound Care Physician<br>
+                                    <span>March 12, 2022</span>
+                                </td>
+                                <td> <button class="btn-sm btn-outline-blue">APPLY</button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="container-wider">
+            <img src="./images/pinnacle-logo-white.png" alt="">
+            <span>© 2022 Pinnacle Wound Management. All Rights Reserved.</span>
+        </div>
+    </footer>
+    <script src="./scripts/scripts.js"></script>
+</body>
+</html>

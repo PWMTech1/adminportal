@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle Wound Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/styles-spacings.css">
+
+</head>
+<body id="home">
+    <div id="mobile-nav">
+        <div id="mobile-nav-container">
+            <button id="close-menu" onclick="closeNav()">
+                <span class="material-icons"> close </span>
+            </button>
+            
+            <ul>
+                <li><a  onclick="closeNav()" href="#home">HOME</a></li>
+                <li><a  onclick="closeNav()" href="#mission">OUR MISSION</a></li>
+                <li><a  onclick="closeNav()" href="#vision">OUR VISION</a></li>
+                <li><a  onclick="closeNav()" href="#about">ABOUT US</a></li>
+                <li><a  onclick="closeNav()" href="services.html">OUR SERVICES</a></li>
+                <li><a  onclick="closeNav()" href="services.html#whyus">WHY US</a></li>
+                <li><a  onclick="closeNav()" href="https://pinnaclewoundmanagement.zohorecruit.com/jobs/Careers">Physician Careers</a></li>
+                <li><a  onclick="closeNav()" href="https://pinnaclewoundmanagement.zohorecruit.com/jobs/Careers">Nurse Careers</a></li>
+                <li><a  onclick="closeNav()" href="contact.html">CONTACT US</a></li>
+                <li><a   onclick="closeNav()" href="">LOGIN FACILITY PORTAL</a</li>
+            </ul>
+        </div>
+    </div>
+    <header id="nav">
+        <div class="container-wider header-container">
+            <a class="btn-facility" href="https://portal.innovativemedsolution.com">LOGIN FACILITY PORTAL</a>
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html"><img src="./images/pinnacle-logo-color.png" alt="Pinnacle Wound Management Logo"></a>
+                </div>
+                <button class="open-nav" onclick="openNav()"><span class="material-icons"> menu </button>
+                <ul class="nav-desktop">
+                    <li><a href="#home" class="active">HOME</a></li>
+                    <li><a href="#mission">OUR MISSION</a></li>
+                    <li><a href="#vision">OUR VISION</a></li>
+                    <li><a href="#about">ABOUT US</a></li>
+                    <li><a href="services.html">OUR SERVICES</a></li>
+                    <li><a href="services.html#whyus">WHY US</a></li>
+                    <li>
+                        <a href="https://pinnaclewoundmanagement.zohorecruit.com/jobs/Careers">CAREERS</a>
+                    </li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </header>
+    <main>
+        <section id="home">
+            <div class="hero-home">
+                <div class="container">
+                    <div class="hero-container">
+                        <h1>
+                            Modernizing and Innovating <br>
+                            Wound Care.
+                        </h1>
+                        <p>
+                            Our goal is to improve the standards of wound care and the lives of the patients we treat. 
+                        </p>
+                        <button onclick="location.href='#intro'" class="btn-lg btn-cta">LEARN MORE</button>
+                    </div>
+                </div>
+            </div>
+            <div id="intro" style="scroll-margin-top: 20px;" class="section-white">
+                <div class="container home-intro">
+                    <div>
+                        <img src="./images/home-intro.png" alt="">
+                    </div>
+                    <div>
+                        <h4 class="h4-red">
+                            At Pinnacle Wound Management, we offer quality weekly wound care visits by a highly trained wound care specialist.
+                        </h4>
+                        <p class="copy">
+                            Our model is designed to provide care at the patients bedside at a minimal cost. We strive to achieve optimal results by coordinating and communicating with our professionals, patients, and their caregivers effectively.
+                        </p>
+                        <h4 class="h4-red">
+                            What’s more, we offer advisory services along with wound healing that surpasses clinical standards of treatment.
+                        </h4>
+                        <p class="copy">
+                            Through our various programs and multi-disciplinary teams, we have established a gold-standard treatment that caters to all patients and facilities
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="mission" class="home-mission">
+            <div class="container">
+                <div>
+                    <h2 class="h2-blue">Our Mission</h2>
+                    <p class="copy-lg white-text">
+                        At Pinnacle Wound Management, our mission is to upscale the standard skilled nursing facility wound care to an exceptionally higher level of care
+                    </p>
+                    <p class="copy white-text">
+                        Our foremost goal is to help as many people as possible through personalized care and comfort in order to heal our patients both mentally completely as well as physically as well as enlighten each and everyone who joins us in his process, including our hardworking staff, our clients, their family.
+                    </p>
+                </div>
+                <div>
+                    <img src="./images/home-mission.png" alt="">
+                </div>
+            </div>
+        </section>
+        <section id="vision" class="section-light">
+            <div class="container-wider home-vision">
+                <h2 class="h2-blue" class="mb-50">Our Vision</h2>
+                <div class="vision-card-container">
+                    <div class="vision-card">
+                        <div class="vision-card-image"> </div>
+                        <div class="vision-card-content">
+                            <p class="copy-lg red-text mb-15">
+                                At Pinnacle Wound Management, our ultimate vision is to support unpatrolled growth and promote advancements in wound care by fostering research and education. 
+                            </p>
+                            <p class="copy">
+                                We also aim to encourage as many people as possible to join us in our noble cause and commit themselves to be lifelong serving the communities we live in. Pinnacle Wound Management always be a step ahead of the conventional thinkers, and by collaborating with other industry leaders, try to develop a perfect environment for the upcoming era of healthcare while being a popular choice for advanced specialty wound care.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-card-image"> </div>
+                        <div class="vision-card-content">
+                            <p class="copy-lg red-text mb-15">
+                                Hence, Pinnacle Wound Management is the platform that helps you heal. 
+                            </p>
+                            <p class="copy">
+                                Our network of wound specialist work with all our potential to provide you with our effective wound care services. Our affiliated wound specialist team is here to take care of your wounds with utmost care and protection. We treat you in such a way that enhances your trust in us. Our healing treatments include empowering facility staff that is trained and specialized with knowledge and encouragement to treat your wounds. Providing you with care, we enhance our work culture in accordance with your needs and requirements.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-card-image"> </div>
+                        <div class="vision-card-content">
+                            <p class="copy-lg red-text mb-15">
+                                We work with passion and confidence throughout the recovery of your wounds. 
+                            </p>
+                            <p class="copy">
+                                The affiliated health professionals at Pinnacle Wound Management, including wound care physicians, diagnose your wounds with effective care and provide you with the treatment it requires. It is the platform that offers dignified care; we look after each with utmost concern. 
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        <section id="about" class="home-about">
+            <div class="home-about-box">
+                    <h2 class="h2-blue">About Us</h2>
+                    <p class="copy white-text lh-30">
+                        Pinnacle Wound Management is the only/one of the leading wound care companies that provides a comprehensive management solution for all your wound care needs. We offer innovative therapies, telemedicine consultations, and personalized education to ensure you are providing the best possible treatment to your patients. With Pinnacle Wound Management ’s integrated system for EMRs, real-time documentation, and seamless collaboration with nursing teams, we provide quality metrics that surpass industry benchmarks.
+                    </p>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <div class="container-wider">
+            <img src="./images/pinnacle-logo-white.png" alt="">
+            <span>© 2022 Pinnacle Wound Management. All Rights Reserved.</span>
+        </div>
+    </footer>
+    <script src="./scripts/scripts.js"></script>
+    <script>
+        const sections = document.querySelectorAll('section[id]');
+        console.log(sections)
+        window.addEventListener("scroll", navHighlighter);
+    </script>
+</body>
+</html>

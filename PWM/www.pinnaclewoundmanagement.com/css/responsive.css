@@ -1,0 +1,287 @@
+/******** RESPONSIVE NAV ********/
+
+@media (max-width: 1020px) {
+    .btn-facility{
+        display: none;
+    }
+    .nav-desktop{
+        display: none;
+    }
+    .open-nav{
+        display: block;
+    }
+}
+@media (max-width: 576px) {
+    #mobile-nav-container{
+        padding: 90px 40px 0 40px;
+    }
+    #mobile-nav-container ul li{
+        margin-bottom: 20px;
+    }
+    #mobile-nav-container ul li:last-child{
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+    #mobile-nav-container ul li a{
+        font-size: 18px;
+    }
+}
+
+
+
+/**************************/
+/******** HOMEPAGE ********/
+/**************************/
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+    .vision-card-container{
+        flex-direction: column;
+    }
+    .vision-card{
+        width: 100%;
+        display: flex;
+        margin-bottom: 40px;
+        border-radius: 100px 20px 20px 20px;
+    }
+    .vision-card .vision-card-image{
+        flex: 0 0 250px;
+        height: auto;
+        /* border: 1px solid pink; */
+    }
+}
+
+@media (max-width: 768px) {
+    .home-intro{
+        flex-direction: column;
+    }
+    .home-intro div:first-child{
+        width: clamp(300px, 60%, 400px);
+    }
+    .home-intro div:last-child{
+        width: 100%;
+    }
+    .home-mission{
+        padding: 50px 0;
+    }
+    .home-mission .container{
+        flex-direction: column-reverse;
+    }
+    .home-mission .container div:first-child{
+        width: 100%;
+    }
+    .home-mission .container div:last-child{
+        width: clamp(300px, 60%, 400px);
+    }
+    .home-mission .container div:last-child{
+        transform: translateY(0px);
+        margin-bottom: -40px;
+    }
+    .vision-card{
+        flex-direction: column;
+    }
+    .vision-card .vision-card-image{
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .home-about{
+        padding: 80px 0;
+    }
+    .home-about-box{
+        width: 90%;
+        margin: 0 auto;
+        padding: 40px 50px 30px 50px;
+    }
+    .hero-home{
+        height: auto;
+        padding-bottom: 80px;
+    }
+}
+
+
+/**************************/
+/******** CAREERS ********/
+/**************************/
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+    .careers-search-container{
+        padding: 30px;
+    }
+    .careers-table tbody tr td button{
+        width: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .career-search-row{
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .career-search-row{
+        grid-template-columns: 1fr 2fr;
+    }
+    .career-search-row .form-group:nth-child(3){
+        grid-column: span 2;
+    }
+    .career-search-row button{
+        grid-column: span 2;
+        margin-top: 20px;
+
+    }
+    .hero-careers-physicians,
+    .hero-careers-nurses{
+        height: auto;
+        padding-bottom: 80px;
+    }
+}
+
+/**************************/
+/******** SERVICES ********/
+/**************************/
+
+@media (max-width: 1200px) {
+    .services-cards-container{
+        grid-template-columns: 1fr;
+    }
+    .services-card{
+        border-radius: 60px 12px 12px 12px;
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+    .services-cards-container{
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+    }
+    .standarized-care-columns{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .whyus-row,
+    .whyus-row:last-child{
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+    .whyus-row-image{
+        margin: 0 auto;
+        width: clamp(300px, 60%, 400px);
+        margin-bottom: -80px;
+    }
+}
+
+@media (max-width: 576px) {
+    .services-card{
+        flex-direction: column;
+    }
+    .standarized-care{
+        text-align: left;
+    }
+    .standarized-care-columns{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .services-card .services-card-image{
+        min-width: 160px;
+        height: 180px;
+    }
+    .whyus{
+        text-align: left;
+    }
+    .hero-services{
+        height: auto;
+        padding-bottom: 80px;
+    }
+}
+
+/**************************/
+/******** JOB POST ********/
+/**************************/
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+    .jobpost-container{
+        flex-direction: column-reverse;
+        gap: 0;
+    }
+    .jobpost-form{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+   
+}
+
+/*************************/
+/******** CONTACT ********/
+/*************************/
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+    .contact-container{
+        display: grid;
+        grid-template-columns: 1fr;
+
+    }
+    .contact-content{
+        margin-bottom: 50px;
+    }
+    .contact-method-container{
+        grid-template-columns: 1fr;
+    }
+    .contact-method:first-child{
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+    .hero-contact{
+        height: auto;
+        padding-bottom: 80px;
+    }
+    .contact-container{
+        padding: 40px 20px;
+    }
+    form .form-row{
+        grid-template-columns: 1fr;
+    }
+    .contact-method:first-child div:last-child{
+        width: 60vw;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        /* border: 1px solid red; */
+    }
+    /* .contact-method:first-child a{
+        font-size: clamp(14px, 3vw, 18px);
+    } */
+   
+}
