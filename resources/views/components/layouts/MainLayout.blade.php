@@ -17,6 +17,8 @@
     <style>
     body {
         font-family: 'Maven Pro' !important;
+        margin: 0;
+        padding: 0;
     }
 
     .ui-widget {
@@ -26,38 +28,43 @@
     .ui-datepicker {
         padding: 0 !important;
     }
+    
+    /* Layout fixes for fixed sidebar */
+    .main-content {
+        margin-left: 280px;
+        min-height: 100vh;
+        background: #f8fafc;
+        transition: margin-left 0.3s ease;
+    }
+    
+    @media (max-width: 768px) {
+        .main-content {
+            margin-left: 0;
+        }
+    }
     </style>
 </head>
 
 <body class="">
     <div class="min-h-full">
-        <main class="flex">
-            @auth()
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-            @include('layouts.navbars.sidebar-new')
-            @endauth
-            @guest()
-            @include('layouts.page_templates.guest')
-            @endguest
+        @auth()
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        @include('layouts.navbars.sidebar-new')
+        @endauth
+        
+        @guest()
+        @include('layouts.page_templates.guest')
+        @endguest
 
-            <div class="w-5/6 mx-auto py-3 sm:px-6 lg:px-8">
-                <!-- Replace with your content -->
-                <div class="px-4 sm:px-0">
-                    <div class="flex flex-col">
-                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                <div class="">
-                                    @yield('content')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /End replace -->
+        @auth()
+        <div class="main-content">
+            <div class="p-6">
+                @yield('content')
             </div>
-        </main>
+        </div>
+        @endauth
     </div>
     @livewireScripts()
 </body>

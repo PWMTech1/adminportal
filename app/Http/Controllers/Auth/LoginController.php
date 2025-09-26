@@ -45,35 +45,47 @@ class LoginController extends Controller
     public function login(\Illuminate\Http\Request $request)
     {
         $credentials  = array('email' => $request->email, 'password' => $request->password);
+        
         if (auth()->attempt($credentials, $request->has('remember'))){
             $id = \Illuminate\Support\Facades\Auth::user()->id;
             $user = \App\User::findOrFail($id);
-            //dd($user);
+            
             if($user->IsTempPassword == 1){
+                if ($request->ajax()) {
+                    return response()->json([
+                        'success' => true,
+                        'redirect' => url('password/expired')
+                    ]);
+                }
                 return redirect()->intended('password/expired');
             }
             else{
                 $user->lastlogindate = \Illuminate\Support\Carbon::now();
                 $user->Save();
+                
+                if ($request->ajax()) {
+                    return response()->json([
+                        'success' => true,
+                        'redirect' => url($this->redirectPath())
+                    ]);
+                }
                 return redirect()->intended($this->redirectPath());
             }
         }
-         return redirect('login')
+        
+        // Login failed
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid credentials'
+            ], 401);
+        }
+        
+        return redirect('login')
             ->withInput($request->only('email', 'remember'))
             ->withErrors([
                 'email' => 'Incorrect email address or password',
             ]);
-        //dd($request);
-//        if(\Illuminate\Support\Facades\Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-//            $id = \Illuminate\Support\Facades\Auth::user()->id;
-//            $user = \App\User::findOrFail($id);
-//            if($user->istemppassword){
-//                return redirect()->intended('profile');
-//            }
-//        }
-//        else{
-//            return \Illuminate\Support\Facades\Redirect::to('home');
-//        }
     }
     public function authenticate(){
         

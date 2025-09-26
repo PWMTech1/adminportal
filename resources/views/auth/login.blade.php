@@ -9,6 +9,7 @@ $conn = DB::connection();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Pinnacle Wound Care - Clinician Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -171,6 +172,15 @@ $conn = DB::connection();
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        #errorMessage {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
         }
         
         .login-logo {
@@ -393,7 +403,7 @@ $conn = DB::connection();
         <div class="login-left">
             <div class="login-form-container">
                 <img src="https://www.pinnaclewoundmanagement.com/images/pinnacle-logo-color.png" alt="Pinnacle Wound Management" class="login-logo">
-                <h1 class="login-title">Login</h1>
+                <h1 class="login-title">Login - Admin Portal</h1>
                 
                 <form method="POST" action="\login">
                     @csrf
@@ -416,6 +426,10 @@ $conn = DB::connection();
                             Processing...
                         </span>
                     </button>
+                    
+                    <div id="errorMessage" class="alert alert-danger mt-3" style="display: none;">
+                        Invalid credentials
+                    </div>
                     
                     @if($errors->any())
                     <div class="alert alert-danger mt-3">{{$errors->first()}}</div>
@@ -525,13 +539,88 @@ $conn = DB::connection();
             const loginBtn = document.getElementById('loginBtn');
             const btnText = document.querySelector('.btn-text');
             const btnLoading = document.querySelector('.btn-loading');
+            const errorMessage = document.getElementById('errorMessage');
             
             if (loginForm && loginBtn) {
-                loginForm.addEventListener('submit', function() {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted via AJAX');
+                    
+                    // Hide any existing error messages
+                    errorMessage.style.display = 'none';
+                    
                     // Show loading state
                     btnText.style.display = 'none';
                     btnLoading.style.display = 'flex';
                     loginBtn.disabled = true;
+                    
+                    // Get form data
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    const token = document.querySelector('input[name="_token"]').value;
+                    
+                    // Create form data
+                    const formData = new FormData();
+                    formData.append('email', email);
+                    formData.append('password', password);
+                    formData.append('_token', token);
+                    
+                    // Submit form via AJAX
+                    fetch(loginForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        
+                        if (response.ok) {
+                            return response.json().then(data => {
+                                console.log('Response data:', data);
+                                
+                                if (data.success) {
+                                    // Successful login - redirect
+                                    console.log('Login successful, redirecting to:', data.redirect);
+                                    window.location.href = data.redirect;
+                                } else {
+                                    // Login failed - show error message
+                                    console.log('Login failed:', data.message);
+                                    errorMessage.style.display = 'block';
+                                    btnText.style.display = 'inline';
+                                    btnLoading.style.display = 'none';
+                                    loginBtn.disabled = false;
+                                }
+                            });
+                        } else {
+                            // HTTP error status
+                            console.log('HTTP error status:', response.status);
+                            errorMessage.style.display = 'block';
+                            btnText.style.display = 'inline';
+                            btnLoading.style.display = 'none';
+                            loginBtn.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Login error:', error);
+                        errorMessage.style.display = 'block';
+                        btnText.style.display = 'inline';
+                        btnLoading.style.display = 'none';
+                        loginBtn.disabled = false;
+                    });
+                    
+                    // Fallback timeout - if no response in 5 seconds, assume failure
+                    setTimeout(() => {
+                        if (loginBtn.disabled) {
+                            console.log('Login timeout - assuming failure');
+                            errorMessage.style.display = 'block';
+                            btnText.style.display = 'inline';
+                            btnLoading.style.display = 'none';
+                            loginBtn.disabled = false;
+                        }
+                    }, 5000);
                 });
             }
         });

@@ -34,12 +34,15 @@ class HomeController extends Controller
         $objects = new XCounts();
         $facilities = Facility::all();
         $objects->TotalFacilities = $facilities->where("IsTestFacility", "0")->count();
-        $objects->TotalActiveFacilities = $facilities->where('StatusId', '=', 1)->count();
+        $objects->TotalActiveFacilities = $facilities->filter(function($facility) {
+            return $facility->StatusId == 1 || is_null($facility->StatusId);
+        })->count();
+        
         $start = new Carbon('first day of last month');
         $end = new Carbon('first day of this month');
 
         $visit = Visit::join('tblFacility', "WTAVisit.FacilityName", "=", "tblFacility.Name")
-            ->where([["tblFacility.IsTestFacility", 0], ["WTAVisit.IsNonVisit", 0]])
+            ->where([["tblFacility.IsTestFacility", "=", 0], ["WTAVisit.IsNonVisit",  0]])
             ->whereBetween('DateAdded', [$start, $end])->get();
 
         $user = \Illuminate\Support\Facades\Auth::user();
@@ -88,7 +91,7 @@ class HomeController extends Controller
                             join tblFacility f on f.Name = w.FacilityName
                             WHERE f.IsTestFacility = 0 AND 
                             DATE_FORMAT(STR_TO_DATE(w.DOS, '%m/%d/%Y'), '%Y-%m-%d') 
-                                BETWEEN DATE_SUB(DATE_SUB(CURDATE(), INTERVAL DAYOFMONTH(CURDATE())-1 DAY), INTERVAL 12 MONTH) AND DATE_ADD(NOW(), INTERVAL 1 DAY)
+                                BETWEEN DATE_SUB(DATE_SUB(CURDATE(), INTERVAL DAYOFMONTH(CURDATE())-1 DAY), INTERVAL 24 MONTH) AND DATE_ADD(NOW(), INTERVAL 1 DAY)
                             AND IsNonVisit = 0 " .
             ($user->roleid == 1 ? " AND w.Addedby  = " . $user->id : ($user->roleid == 7 ? "v.Addedby = 0" : "")) . "
                             group by DATE_FORMAT(STR_TO_DATE(w.DOS, '%m/%d/%Y'), '%b-%Y'), MONTH(STR_TO_DATE(w.DOS, '%m/%d/%Y')),
