@@ -144,15 +144,74 @@ $permissions = HomeController::getAllPermissionsPerUser();
     color: #dc2626 !important;
 }
 
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+}
+
+.mobile-menu-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.show {
+    opacity: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
     .sidebar-nav {
-        width: 100%;
+        width: 280px;
         transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
     }
     
     .sidebar-nav.open {
         transform: translateX(0);
+    }
+    
+    .mobile-overlay {
+        display: block;
+    }
+    
+    .mobile-overlay.show {
+        display: block;
     }
 }
 
@@ -175,7 +234,19 @@ $permissions = HomeController::getAllPermissionsPerUser();
 }
 </style>
 
-<nav class="sidebar-nav">
+<!-- Mobile Menu Toggle Button -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+</button>
+
+<!-- Mobile Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<nav class="sidebar-nav" id="sidebarNav">
     <div class="sidebar-container">
         <!-- Logo Section -->
         <div class="sidebar-header">
@@ -362,3 +433,60 @@ $permissions = HomeController::getAllPermissionsPerUser();
         </div>
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const sidebarNav = document.getElementById('sidebarNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+        sidebarNav.classList.toggle('open');
+        mobileOverlay.classList.toggle('show');
+        
+        // Prevent body scroll when menu is open
+        if (sidebarNav.classList.contains('open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Close mobile menu
+    function closeMobileMenu() {
+        sidebarNav.classList.remove('open');
+        mobileOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    
+    // Event listeners
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close menu when clicking on nav links (for better UX)
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Only close on mobile
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebarNav.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+});
+</script>

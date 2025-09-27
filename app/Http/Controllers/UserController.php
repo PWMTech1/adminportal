@@ -22,6 +22,81 @@ class UserController extends Controller
     public function index(User $model, Request $request)
     {
         $roles = Roles::all();
+        
+        // Handle AJAX requests for async data loading
+        if ($request->ajax()) {
+            try {
+                $query = $model::with('roles');
+                
+                // Apply name filter if provided
+                if (!empty($request->name)) {
+                    $query = $query->where(function($q) use ($request) {
+                        $q->where('firstname', 'LIKE', '%' . $request->name . '%')
+                          ->orWhere('lastname', 'LIKE', '%' . $request->name . '%');
+                    });
+                }
+                
+                // Apply email filter if provided
+                if (!empty($request->email)) {
+                    $query = $query->where('email', 'LIKE', '%' . $request->email . '%');
+                }
+                
+                // Apply role filter if provided
+                if (!empty($request->role)) {
+                    $query = $query->where("roleid", $request->role);
+                }
+                
+                // Apply status filter if provided
+                if (!empty($request->status)) {
+                    if ($request->status === 'active') {
+                        $query = $query->where('active', 1);
+                    } elseif ($request->status === 'inactive') {
+                        $query = $query->where('active', 0);
+                    }
+                }
+                
+                // Apply date range filter if provided
+                if (!empty($request->date_range)) {
+                    $now = now();
+                    switch ($request->date_range) {
+                        case 'today':
+                            $query = $query->whereDate('created_at', $now->toDateString());
+                            break;
+                        case 'week':
+                            $query = $query->whereBetween('created_at', [$now->startOfWeek(), $now->endOfWeek()]);
+                            break;
+                        case 'month':
+                            $query = $query->whereMonth('created_at', $now->month)
+                                          ->whereYear('created_at', $now->year);
+                            break;
+                        case 'year':
+                            $query = $query->whereYear('created_at', $now->year);
+                            break;
+                    }
+                }
+                
+                // Get paginated users
+                $users = $query->paginate(10);
+                
+                // Return JSON response
+                return response()->json([
+                    'users' => $users->items(),
+                    'pagination' => $users->links()->render(),
+                    'total' => $users->total(),
+                    'current_page' => $users->currentPage(),
+                    'last_page' => $users->lastPage(),
+                    'per_page' => $users->perPage()
+                ]);
+                
+            } catch (\Exception $e) {
+                return response()->json([
+                    'error' => 'Failed to load users data',
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        }
+        
+        // Regular view request
         if (!empty($request->role))
             $model = $model::where("roleid", $request->role);
         return view('users.index', ['users' => $model::with('roles')->paginate(10), 'roles' => $roles]);
@@ -59,7 +134,7 @@ class UserController extends Controller
             'istemppassword' => 1
         ]);
         //$model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
-        Mail::to($user->email)->send(new SendMailable($user, $request->get('password'), 'welcome'));
+        Mail::to($user->email)->send(new SendMailable($user, $request->get('password'), 'welcome', 'admin.innovativemedsolution.com'));
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 

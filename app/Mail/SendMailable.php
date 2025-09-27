@@ -14,11 +14,13 @@ class SendMailable extends Mailable
     public $user;
     public $password;
     public $type;
+    public $loginUrl;
     
-    public function __construct(User $user, $password, $type) {
+    public function __construct(User $user, $password, $type, $loginUrl = null) {
         $this->user = $user;
         $this->password = $password;
         $this->type = $type;
+        $this->loginUrl = $loginUrl;
     }
     
     public function build(){

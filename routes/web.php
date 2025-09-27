@@ -80,6 +80,11 @@ Route::get("/facility/edit/{id}", "App\Http\Controllers\FacilityController@edit"
 Route::get("/Facility/EditContact/{id}", "App\Http\Controllers\FacilityController@EditContact");
 
 Route::post("/SaveContact", "App\Http\Controllers\FacilityController@SaveContact");
+Route::post("/facility/save-contact", "App\Http\Controllers\FacilityController@SaveFacilityContact");
+Route::delete("/facility/delete-contact/{userId}", "App\Http\Controllers\FacilityController@DeleteFacilityContact");
+Route::get("/facility/get-clinicians", "App\Http\Controllers\FacilityController@GetClinicians");
+Route::post("/facility/attach-clinicians", "App\Http\Controllers\FacilityController@AttachClinicians");
+Route::post("/facility/save-clinician", "App\Http\Controllers\FacilityController@SaveClinician");
 
 Route::get('/visit/progressnotes/{id}', 'App\Http\Controllers\VisitController@GetProgressNotes');
 
@@ -100,6 +105,9 @@ Route::group(['middleware' => 'auth'], function () {
         //Route::resource('facility','FacilityController');
         //Route::resource("/facility/contacts?code={code}","FacilityController@Contacts");
     });
+    
+    // API routes for dashboard
+    Route::get('/getfacilitiesformap', 'App\Http\Controllers\HomeController@GetFacilitiesForMap');
     Route::get('password/expired', 'App\Http\Controllers\Auth\ExpiredPasswordController@expired')
         ->name('password.expired');
     Route::post('password/post_expired', 'App\Http\Controllers\Auth\ExpiredPasswordController@postExpired')

@@ -100,4 +100,17 @@ class HomeController extends Controller
 
         return Response::json($tvisits);
     }
+
+    public function GetFacilitiesForMap()
+    {
+        $facilities = Facility::select('Name', 'Address1', 'City', 'State', 'ZipCode5', 'Latitude', 'Longitude')
+            ->where('IsTestFacility', 0)
+            ->where(function($query) {
+                $query->where('StatusId', '=', 1)
+                      ->orWhereNull('StatusId');
+            })
+            ->get();
+
+        return Response::json($facilities);
+    }
 }
