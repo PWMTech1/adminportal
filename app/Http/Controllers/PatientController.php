@@ -26,28 +26,55 @@ class PatientController extends Controller
     {
         $entity = Entity::all();
         $facilities = DB::select("call GetFacilityList(0, 0)");
-        $patient = Patient::where("IsTestFacility", false)->get();
-
-        if (!empty($request->facility))
-            $patient = $patient->where(["FacilityId", $request->facility])->get();
-
+        
+        // Get all patients first
+        $patient = Patient::all();
+        
+        // Apply filters to the collection
+        if (!empty($request->facility)) {
+            // Filter by facility name (not ID)
+            $patient = $patient->where('FacilityName', $request->facility);
+        }
+        
+        if (!empty($request->patientname)) {
+            $patient = $patient->filter(function($p) use ($request) {
+                $fullName = trim($p->FirstName . ' ' . $p->MiddleName . ' ' . $p->LastName);
+                return stripos($fullName, $request->patientname) !== false;
+            });
+        }
+        
+        if (!empty($request->entities) && $request->entities != '-1') {
+            $patient = $patient->where('EntityId', $request->entities);
+        }
+        
+        // Convert to array for pagination
+        $patientArray = $patient->toArray();
+        
+        // Manual pagination
         $page = request('page', 1);
         $pageSize = 10;
         $offset = ($page * $pageSize) - $pageSize;
-        $data = array_slice($patient->toArray(), $offset, $pageSize, true);
+        $data = array_slice($patientArray, $offset, $pageSize, true);
+        
         $paginator = new \Illuminate\Pagination\LengthAwarePaginator(
             $data,
-            count($patient),
+            count($patientArray),
             $pageSize,
             $page,
-            ['path' => url('/patient/list?facility=' . $request->facility . '&patientname=' . $request->patientname . "&entities=" . $request->entities)]
+            [
+                'path' => url('/patient/list'),
+                'pageName' => 'page'
+            ]
         );
+        
+        // Add query parameters to pagination links
+        $paginator->appends($request->query());
 
         return view("Patient.List", compact([
             'facilities', 'entity', 'paginator'
         ]))->with([
             'patientname' => $request->patientname,
-            'facilityname' => $request->facilityname,
+            'facilityname' => $request->facility,
             'entities' => $request->entities
         ]);
     }

@@ -328,6 +328,19 @@ $permissions = HomeController::getAllPermissionsPerUser();
                             <span class="nav-text">Patient Registration</span>
                         </a>
                     </li>
+                    <li class="nav-item {{ request()->is('patient/list*') ? 'active' : '' }}">
+                        <a href="/patient/list" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="nav-icon">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="nav-text">Patient List</span>
+                        </a>
+                    </li>
                 @endif
                 @if ($permissions->permissions & Roles::ORDER_SUPPLIES || $permissions->AllowAll)
                     <li class="nav-item {{ request()->is('forms/ordersupplies*') ? 'active' : '' }}">
@@ -386,16 +399,16 @@ $permissions = HomeController::getAllPermissionsPerUser();
                     </li>
                 @endif
                 @if ($permissions->permissions & Roles::REPORTS || $permissions->AllowAll)
-                    <li class="nav-item {{ request()->routeIs('reports*') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('report*') ? 'active' : '' }}">
                         <a href="{{ route('reports') }}" class="nav-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="nav-icon">
-                                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
-                                <line x1="12" y1="22" x2="12" y2="15.5"></line>
-                                <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
-                                <polyline points="2 15.5 12 8.5 22 15.5"></polyline>
-                                <line x1="12" y1="2" x2="12" y2="8.5"></line>
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
                             </svg>
                             <span class="nav-text">Reports</span>
                         </a>

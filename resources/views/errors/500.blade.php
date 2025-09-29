@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>500 - Server Error</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -36,7 +36,7 @@
             width: 40px;
             height: 40px;
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #3b82f6;
+            border-top: 4px solid #ef4444;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -65,7 +65,7 @@
             height: 60px;
             margin: 0 auto 20px;
             display: block;
-            color: #3b82f6;
+            color: #ef4444;
         }
 
         .error-icon svg {
@@ -89,7 +89,7 @@
         }
 
         .btn-primary {
-            background: #3b82f6;
+            background: #ef4444;
             color: white;
             padding: 12px 24px;
             border: none;
@@ -102,7 +102,7 @@
         }
 
         .btn-primary:hover {
-            background: #2563eb;
+            background: #dc2626;
             color: white;
             text-decoration: none;
             transform: translateY(-1px);
@@ -133,14 +133,14 @@
         
         <div class="error-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
         </div>
         
-        <h1 class="error-title">Opps!!!</h1>
-        <h2 class="error-subtitle">This page you are looking for could not be found.</h2>
+        <h1 class="error-title">500</h1>
+        <h2 class="error-subtitle">Internal Server Error</h2>
         
         <a href="/" class="btn-primary">Go Back to Home</a>
     </div>

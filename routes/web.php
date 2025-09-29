@@ -87,6 +87,8 @@ Route::post("/facility/attach-clinicians", "App\Http\Controllers\FacilityControl
 Route::post("/facility/save-clinician", "App\Http\Controllers\FacilityController@SaveClinician");
 
 Route::get('/visit/progressnotes/{id}', 'App\Http\Controllers\VisitController@GetProgressNotes');
+Route::post('/visit/get-visit-data', 'App\Http\Controllers\VisitController@GetVisitData');
+Route::post('/visit/save-visit-changes', 'App\Http\Controllers\VisitController@SaveVisitChanges');
 
 Route::get('/downloadcsv', [App\Http\Controllers\ReportController::class, "downloadcsv"]);
 
@@ -151,6 +153,7 @@ Route::post('/ffs/entity/store', [App\Http\Controllers\FFSController::class, "sa
 Route::get('/visit/newprogressnote/{id}', [App\Http\Controllers\VisitController::class, "GetProgressNotePDF"])->middleware("guest")->name("newprogressnote");
 Route::get('/visit/generatednote/{id}', [App\Http\Controllers\VisitController::class, "GetGeneratedNotePDF"]);
 Route::get('/reports', [App\Http\Controllers\ReportController::class, "index"])->name("reports");
+Route::get('/report', [App\Http\Controllers\ReportController::class, "index"]);
 Route::get('/facesheets/{id}', [App\Http\Controllers\TrackerController::class, "facesheets"])->name("facesheets");
 Route::get('/worklist/index', [App\Http\Controllers\WorkListController::class, "index"])->name("crmworklist");
 Route::get('/CompensationDocument', [App\Http\Controllers\FFSController::class, "CompensationDocument"])->name("CompensationDocument");
